@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const User = ({ user }) => {
+export const User = ({ user, setSelectedUserId }) => {
   const {
     id, createdAt, name, avatar, phone, city, role,
   } = user;
@@ -15,6 +15,12 @@ export const User = ({ user }) => {
       <p>{`phone: ${phone}`}</p>
       <p>{`city: ${city}`}</p>
       <p>{`role: ${role}`}</p>
+      <button
+        type="button"
+        onClick={() => setSelectedUserId(id)}
+      >
+        Get posts
+      </button>
     </li>
   );
 };
@@ -29,4 +35,5 @@ User.propTypes = {
     city: PropTypes.string,
     role: PropTypes.string,
   }).isRequired,
+  setSelectedUserId: PropTypes.func.isRequired,
 };
