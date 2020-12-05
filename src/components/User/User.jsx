@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './User.scss';
@@ -10,10 +9,7 @@ export const User = ({ user }) => {
   } = user;
 
   return (
-    <Link
-      className="user"
-      to={`/${id}`}
-    >
+    <div className="user">
       <img className="user__image" src={avatar} alt={name} />
       <h2 className="user__name">{name}</h2>
       <p>{`ID: ${id}`}</p>
@@ -21,7 +17,7 @@ export const User = ({ user }) => {
       <p>{`phone: ${phone}`}</p>
       <p>{`city: ${city}`}</p>
       <p>{`role: ${role}`}</p>
-    </Link>
+    </div>
   );
 };
 

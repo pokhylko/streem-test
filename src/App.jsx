@@ -17,7 +17,9 @@ export const App = () => {
   return (
     <div className="App">
       <Switch>
-        <Route path="/:userId" component={PostsList} />
+        <Route path="/:userId">
+          <PostsList users={users} />
+        </Route>
         <Route path="/">
           <UsersList users={users} />
         </Route>

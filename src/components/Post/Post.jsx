@@ -7,14 +7,14 @@ export const Post = ({ post }) => {
   } = post;
 
   return (
-    <li>
+    <div className="post">
       <img src={image} alt={`${userId} avatar`} />
       <p>{`ID: ${id}`}</p>
       <p>{`User ID: ${userId}`}</p>
       <p>{`Created at: ${createdAt}`}</p>
       <p>{`Edited at: ${editedAt}`}</p>
       <p>{content}</p>
-    </li>
+    </div>
   );
 };
 
