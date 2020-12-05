@@ -1,6 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.scss';
 
-export const App = () => (
-  <div className="App">App</div>
-);
+import { getUsers } from './api/users';
+import { UsersList } from './components/UsersList';
+
+export const App = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    getUsers()
+      .then((allUsers) => setUsers(allUsers));
+  }, []);
+
+  return (
+    <div className="App">
+      <UsersList users={users} />
+    </div>
+  );
+};
