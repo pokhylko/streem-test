@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 
 import { User } from '../User';
 
+import './UsersList.scss';
+
 export const UsersList = ({ users, setSelectedUserId }) => (
-  <ul>
+  <ul className="user-list">
     {users.map((user) => (
       <User
         user={user}

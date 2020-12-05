@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './User.scss';
+
 export const User = ({ user, setSelectedUserId }) => {
   const {
     id, createdAt, name, avatar, phone, city, role,
   } = user;
 
   return (
-    <li>
-      <img src={avatar} alt={name} />
-      <h2>{name}</h2>
+    <li className="user">
+      <img className="user__image" src={avatar} alt={name} />
+      <h2 className="user__name">{name}</h2>
       <p>{`ID: ${id}`}</p>
       <p>{`createdAt: ${createdAt}`}</p>
       <p>{`phone: ${phone}`}</p>
