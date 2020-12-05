@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import './App.scss';
 
 import { getUsers } from './api/users';
@@ -7,22 +8,20 @@ import { PostsList } from './components/PostsList';
 
 export const App = () => {
   const [users, setUsers] = useState([]);
-  const [selectedUserId, setSelectedUserId] = useState(0);
 
   useEffect(() => {
     getUsers()
       .then((allUsers) => setUsers(allUsers));
   }, []);
 
-  console.log(selectedUserId);
-
   return (
     <div className="App">
-      <UsersList users={users} setSelectedUserId={setSelectedUserId} />
-
-      {selectedUserId !== 0 && (
-        <PostsList selectedUserId={selectedUserId} />
-      )}
+      <Switch>
+        <Route path="/:userId" component={PostsList} />
+        <Route path="/">
+          <UsersList users={users} />
+        </Route>
+      </Switch>
     </div>
   );
 };

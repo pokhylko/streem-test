@@ -1,15 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './User.scss';
 
-export const User = ({ user, setSelectedUserId }) => {
+export const User = ({ user }) => {
   const {
     id, createdAt, name, avatar, phone, city, role,
   } = user;
 
   return (
-    <li className="user">
+    <Link
+      className="user"
+      to={`/${id}`}
+    >
       <img className="user__image" src={avatar} alt={name} />
       <h2 className="user__name">{name}</h2>
       <p>{`ID: ${id}`}</p>
@@ -17,13 +21,7 @@ export const User = ({ user, setSelectedUserId }) => {
       <p>{`phone: ${phone}`}</p>
       <p>{`city: ${city}`}</p>
       <p>{`role: ${role}`}</p>
-      <button
-        type="button"
-        onClick={() => setSelectedUserId(id)}
-      >
-        Get posts
-      </button>
-    </li>
+    </Link>
   );
 };
 
@@ -37,5 +35,4 @@ User.propTypes = {
     city: PropTypes.string,
     role: PropTypes.string,
   }).isRequired,
-  setSelectedUserId: PropTypes.func.isRequired,
 };

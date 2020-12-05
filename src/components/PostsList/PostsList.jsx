@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import { getPosts } from '../../api/posts';
 import { Post } from '../Post';
 
-export const PostsList = ({ selectedUserId }) => {
+export const PostsList = ({ match }) => {
   const [posts, setPosts] = useState([]);
+  const selectedUserId = match.params.userId;
 
   useEffect(() => {
     getPosts(selectedUserId)
@@ -22,5 +23,5 @@ export const PostsList = ({ selectedUserId }) => {
 };
 
 PostsList.propTypes = {
-  selectedUserId: PropTypes.string.isRequired,
+  match: PropTypes.string.isRequired,
 };
