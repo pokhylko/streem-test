@@ -6,6 +6,8 @@ import { getPosts } from '../../api/posts';
 import { Post } from '../Post';
 import { User } from '../User';
 
+import './PostsList.scss';
+
 export const PostsList = withRouter(
   ({ match, users }) => {
     const [posts, setPosts] = useState([]);
@@ -18,10 +20,10 @@ export const PostsList = withRouter(
     }, [selectedUserId]);
 
     return (
-      <div>
+      <div className="posts">
         <User user={currentUser} />
 
-        <div>
+        <div className="posts__list">
           {posts.map((post) => (
             <Post post={post} key={post.id} />
           ))}

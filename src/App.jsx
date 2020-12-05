@@ -18,7 +18,9 @@ export const App = () => {
     <div className="App">
       <Switch>
         <Route path="/:userId">
-          <PostsList users={users} />
+          {users.length > 0 && (
+            <PostsList users={users} />
+          )}
         </Route>
         <Route path="/">
           <UsersList users={users} />
