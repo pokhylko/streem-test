@@ -10,6 +10,7 @@ export const UsersList = ({ users }) => (
   <div className="user-list">
     {users.map((user) => (
       <Link
+        className="user-list__link"
         to={`/user${user.id}`}
         key={user.id}
       >

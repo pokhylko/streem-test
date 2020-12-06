@@ -31,6 +31,7 @@ export const PostsList = ({ users }) => {
           <div className="posts__list">
             {posts.map((post) => (
               <Link
+                className="posts__link"
                 to={`${url}/post${post.id}`}
                 key={post.id}
               >

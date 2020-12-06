@@ -8,4 +8,13 @@
     gap: 20px;
     grid-column: 2/4;
   }
+
+  &__link {
+    padding: 20px;
+    transition: box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+    }
+  }
 }

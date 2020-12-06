@@ -12,3 +12,8 @@ ul {
   list-style: none;
   outline: none;
 }
+
+a {
+  color: #000;
+  text-decoration: none;
+}
