@@ -17,13 +17,13 @@ export const App = () => {
   return (
     <div className="App">
       <Switch>
-        <Route path="/:userId">
+        <Route exact path="/">
+          <UsersList users={users} />
+        </Route>
+        <Route path="/user:userId">
           {users.length > 0 && (
             <PostsList users={users} />
           )}
-        </Route>
-        <Route path="/">
-          <UsersList users={users} />
         </Route>
       </Switch>
     </div>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+import {
+  Switch, Route, Link, useParams, useRouteMatch,
+} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { getPosts } from '../../api/posts';
@@ -8,32 +10,46 @@ import { User } from '../User';
 
 import './PostsList.scss';
 
-export const PostsList = withRouter(
-  ({ match, users }) => {
-    const [posts, setPosts] = useState([]);
-    const selectedUserId = match.params.userId;
-    const currentUser = users.filter((user) => user.id === selectedUserId)[0];
+export const PostsList = ({ users }) => {
+  const [posts, setPosts] = useState([]);
+  const { userId } = useParams();
+  const { path, url } = useRouteMatch();
 
-    useEffect(() => {
-      getPosts(selectedUserId)
-        .then((allPosts) => setPosts(allPosts));
-    }, [selectedUserId]);
+  const currentUser = users.filter((user) => user.id === userId)[0];
 
-    return (
-      <div className="posts">
-        <User user={currentUser} />
+  useEffect(() => {
+    getPosts(userId)
+      .then((allPosts) => setPosts(allPosts));
+  }, [userId]);
 
-        <div className="posts__list">
-          {posts.map((post) => (
-            <Post post={post} key={post.id} />
-          ))}
+  return (
+    <Switch>
+      <Route exact path={path}>
+        <div className="posts">
+          <User user={currentUser} />
+
+          <div className="posts__list">
+            {posts.map((post) => (
+              <Link
+                to={`${url}/post${post.id}`}
+                key={post.id}
+              >
+                <Post post={post} key={post.id} />
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
-    );
-  },
-);
+      </Route>
+
+      <Route path={`${path}/post:postId`}>
+        {posts.length > 0 && (
+          <Post posts={posts} />
+        )}
+      </Route>
+    </Switch>
+  );
+};
 
 PostsList.propTypes = {
-  match: PropTypes.shape(),
   users: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };

@@ -13,10 +13,10 @@ export const User = ({ user }) => {
       <img className="user__image" src={avatar} alt={name} />
       <h2 className="user__name">{name}</h2>
       <p>{`ID: ${id}`}</p>
-      <p>{`createdAt: ${createdAt}`}</p>
-      <p>{`phone: ${phone}`}</p>
-      <p>{`city: ${city}`}</p>
-      <p>{`role: ${role}`}</p>
+      <p>{`Created at: ${createdAt}`}</p>
+      <p>{`Phone: ${phone}`}</p>
+      <p>{`City: ${city}`}</p>
+      <p>{`Role: ${role}`}</p>
     </div>
   );
 };

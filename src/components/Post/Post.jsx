@@ -1,12 +1,15 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './Post.scss';
 
-export const Post = ({ post }) => {
+export const Post = ({ post, posts }) => {
+  const { postId } = useParams();
+  const currentPost = posts.filter((post1) => post1.id === postId)[0];
   const {
     id, userId, createdAt, editedAt, image, content,
-  } = post;
+  } = post || currentPost;
 
   return (
     <div className="post">
@@ -31,5 +34,11 @@ Post.propTypes = {
     editedAt: PropTypes.string,
     image: PropTypes.string,
     content: PropTypes.string,
-  }).isRequired,
+  }),
+  posts: PropTypes.arrayOf(PropTypes.shape()),
+};
+
+Post.defaultProps = {
+  post: null,
+  posts: [],
 };
